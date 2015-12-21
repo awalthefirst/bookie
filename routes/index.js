@@ -78,6 +78,7 @@ router.post('/signup',function(req, res, next){
 
 /*GET Logout Page*/
 router.get('/logout', function (req, res, next) {
+  
   //remove cookie/session
   req.BookieSession.reset();
   res.rediret('/');
