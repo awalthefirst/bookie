@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
+require('dotenv').config({silent: true});
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sessions = require("client-sessions");
@@ -8,7 +9,7 @@ var index = require('./routes/index');
 var dashboard = require('./routes/dashboard');
 var profile = require('./routes/profile');
 var api = require('./routes/api');
-require('dotenv').config({silent: true});
+
 
 var app = express();
 

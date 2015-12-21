@@ -16,20 +16,45 @@ var userSchema = new Schema({
     unique: true,
     required: true
   },
-  
-  UserInfo:[{
-    phone:Number,
-    reqion:String,
-    city:String
+
+  UserInfo: [{
+    phone: Number,
+    reqion: String,
+    city: String
   }]
 });
 
 var obj = {
-  User:mongoose.model('User', userSchema),
-}
+  getUser: function () {
+    return mongoose.model('User', userSchema);
+  },
 
+  findUser: function (query, cb) {
+    obj.getUser().findOne({
+      username: query.username,
+      email: query.email
+    }, cb);
+  },
+
+  addUser: function (query, cb) {
+    var user = new obj.getUser({
+      username: query.username,
+      password: query.password,
+      email: query.email,
+      UserInfo: {
+        phone: query.useInfo.phone,
+        reqion: query.useInfo.reqion,
+        city: query.useInfo.city
+      }
+    });
+    
+    user.save(cb);
+  },
+
+  updateUserInfo: function () {}
+};
 
 
 //mongo
 mongoose.connect(process.env.MongoUrl);
-module.exports = o;
+module.exports = obj;
