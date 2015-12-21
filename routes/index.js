@@ -5,7 +5,8 @@ var userDb = require("../model/users")
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
-    title: 'Bookie'
+    title: 'Bookie',
+    auth: req.Authen
   });
 });
 
@@ -18,10 +19,13 @@ router.post('/login', function (req, res, next) {
     email: req.body.email,
     password: req.body.password
   }, function (err, data) {
+    
+    //render home page with error
     if (err || data === null) {
       req.BookieSession.reset();
       res.render('index', {
         title: 'Login Error',
+        auth: req.Authen,
         error: ''
       });
     }
@@ -51,9 +55,12 @@ router.post('/signup',function(req, res, next){
         city: req.body.useInfo.city
       }
     },function(err,data){
+      
+      //render home page with error
     if(err){
       res.render('index', {
         title: 'SignUp Error',
+        auth: req.Authen,
         error: ''
       });
     }else{
