@@ -42,8 +42,11 @@ router.post('/login', function (req, res, next) {
     else {
 
       //redirect to dashboard with user cookie/session
-      var user = {};
-      req.BookieSession[user];
+      var user = {
+        username:data.username,
+        email:data.email
+      };
+      req.BookieSession.user = user;
       res.redirect('/dashboard');
     }
 
@@ -71,7 +74,7 @@ router.post('/signup', function (req, res, next) {
 
     //render home page with error
     if (err) {
-      console.log(err)
+      req.BookieSession.reset();
       res.render('index', {
         title: 'SignUp Error',
         auth: req.Authen,
@@ -79,12 +82,13 @@ router.post('/signup', function (req, res, next) {
       });
     }
     else {
-      console.log(data);
       //redirect to dashboard with user cookie/session
-      var user = {};
-      req.BookieSession[user];
+      var user = {
+        username:data.username,
+        email:data.email
+      };
+      req.BookieSession.user = user;
       res.redirect('/dashboard');
-
     }
 
   });

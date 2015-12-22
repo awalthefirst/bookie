@@ -5,7 +5,6 @@ require('dotenv').config({silent: true});
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sessions = require("client-sessions");
-
 var index = require('./routes/index');
 var dashboard = require('./routes/dashboard');
 var profile = require('./routes/profile');
