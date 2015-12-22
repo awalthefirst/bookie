@@ -100,7 +100,7 @@ router.get('/logout', function (req, res, next) {
 
   //remove cookie/session
   req.BookieSession.reset();
-  res.rediret('/');
+  res.redirect('/');
 });
 
 module.exports = router;
