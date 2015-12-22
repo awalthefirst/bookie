@@ -1,4 +1,4 @@
-/*var mongoose = require("mongoose");
+var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
@@ -11,10 +11,26 @@ var BooksSchema = new Schema({
 });
 
 var obj = {
-  User:mongoose.model('books', BooksSchema),
-}
+  getBookDb: function () {
+    return mongoose.model('Books', BooksSchema);
+  },
 
+  addBook: function (query, cb) {
+    var book = new obj.getBookDb({
+
+    });
+
+    book.save(cb);
+  },
+
+  removeBook: function (query, cb) {
+    obj.getBookDb().findOneAndRemove({
+
+    }, cb)
+  }
+
+};
 
 
 //mongo
-module.exports = obj;*/
+module.exports = obj;
