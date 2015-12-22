@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var userDb = require("../model/users");
 var bcrypt = require('bcryptjs');
+
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('index', {
@@ -51,10 +53,10 @@ router.post('/login', function (req, res, next) {
 
 /*post Sign Up*/
 router.post('/signup', function (req, res, next) {
-  console.log(req.body);
 
   //hash user pass
   var hashPass = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+  
   //save user data 
   userDb.addUser({
     username: req.body.username.toLowerCase(),
@@ -77,7 +79,7 @@ router.post('/signup', function (req, res, next) {
       });
     }
     else {
-
+      console.log(data);
       //redirect to dashboard with user cookie/session
       var user = {};
       req.BookieSession[user];

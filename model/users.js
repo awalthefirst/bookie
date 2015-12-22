@@ -1,6 +1,22 @@
 var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
+
+var UserInfoSchema = new Schema({
+  phone: {
+    type: String,
+    required: true
+  },
+  city: {
+    type: String,
+    required: true
+  },
+  reqion: {
+    type: String,
+    required: true
+  }
+});
+
 var userSchema = new Schema({
   username: {
     type: String,
@@ -17,11 +33,7 @@ var userSchema = new Schema({
     required: true
   },
 
-  UserInfo: [{
-    phone: Number,
-    reqion: String,
-    city: String
-  }]
+  UserInfo: [UserInfoSchema]
 });
 
 var obj = {
@@ -36,18 +48,19 @@ var obj = {
   },
 
   addUser: function (query, cb) {
-    
+
     var user = new obj.getUser()({
       username: query.username,
       password: query.password,
       email: query.email,
-      UserInfo: {
-        phone: query.phone,
-        reqion: query.reqion,
-        city: query.city
-      }
+      UserInfo: [{
+        phone: query.UserInfo.phone,
+        reqion: query.UserInfo.reqion,
+        city: query.UserInfo.city
+      }]
     });
-    
+
+
     user.save(cb);
   },
 
