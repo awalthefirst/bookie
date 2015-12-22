@@ -2,48 +2,27 @@ extends layout
 
 block content
   nav.navbar.navbar-default
-    .container-fluid
-      .navbar-header
-        button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1")
-          span.sr-only Toggle navigation
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-        a.navbar-brand(href="#") Brand
-      #bs-example-navbar-collapse-1.collapse.navbar-collapse
-        ul.nav.navbar-nav
-          li.active
-            a(href="#")
-              | Link
-              span.sr-only (current)
-          li
-            a(href="#") Link
-          li.dropdown
-            a.dropdown-toggle(href="#", data-toggle="dropdown", role="button", aria-expanded="false")
-              | Dropdown
-              span.caret
-            ul.dropdown-menu(role="menu")
-              li
-                a(href="#") Action
-              li
-                a(href="#") Another action
-              li
-                a(href="#") Something else here
-              li.divider
-              li
-                a(href="#") Separated link
-              li.divider
-              li
-                a(href="#") One more separated link
-        form#signin.navbar-form.navbar-right(role="form" action='/login' method="POST")
-          .input-group
-            span.input-group-addon
-              i.glyphicon.glyphicon-user
-            input#email.form-control(type="email", name="email", value="", placeholder="Email Address")
-          .input-group
-            span.input-group-addon
-              i.glyphicon.glyphicon-lock
-            input#password.form-control(type="password", name="password", value="", placeholder="Password")
-          button.btn.btn-primary(type="submit") Login
-
+    .container
+      .col-md-7
+        p Bookie 
+      .col-md-5
+        form.form-inline(action='/login' method="post")
+          input(type="email" required name="email" class="form-control"  placeholder="Enter email")
+          input(type="password" required name="password" class="form-control"  placeholder="Password")
+          button.btn(type="submit") Log In
+  .container
+    div
+      .col-md-7
+        p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, commodi cumque sint unde maxime accusamus adipisci nemo quaerat aspernatur facere assumenda alias earum repellat nam velit nostrum itaque officia laudantium!
+      .col-md-5
+        form(action='/signup' method="post")
+          input(type="text" name='username' required class="form-control"  placeholder="Enter Username")
+          input(type="email" name='email' required class="form-control"  placeholder="Enter email")
+          input(type="password" name='password' required class="form-control"  placeholder="Password")
+          input(type="text" name='city' required class="form-control" placeholder="City")
+          input(type="tel" name='phone' required class="form-control" placeholder="Mobile Number")
+          input(type="text" name='reqion' required class="form-control" placeholder="Country/State")
+          button.btn(type="submit") Sign Up
+    
   
+ 

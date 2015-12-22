@@ -31,20 +31,20 @@ var obj = {
 
   findUser: function (query, cb) {
     obj.getUser().findOne({
-      username: query.username,
       email: query.email
     }, cb);
   },
 
   addUser: function (query, cb) {
-    var user = new obj.getUser({
+    
+    var user = new obj.getUser()({
       username: query.username,
       password: query.password,
       email: query.email,
       UserInfo: {
-        phone: query.useInfo.phone,
-        reqion: query.useInfo.reqion,
-        city: query.useInfo.city
+        phone: query.phone,
+        reqion: query.reqion,
+        city: query.city
       }
     });
     
