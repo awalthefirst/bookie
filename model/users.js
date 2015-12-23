@@ -17,6 +17,7 @@ var UserInfoSchema = new Schema({
   }
 });
 
+
 var userSchema = new Schema({
   username: {
     type: String,
