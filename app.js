@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var sessions = require("client-sessions");
 var index = require('./routes/index');
 var dashboard = require('./routes/dashboard');
-var profile = require('./routes/profile');
+var settings = require('./routes/settings');
 var api = require('./routes/api');
 
 
@@ -43,7 +43,7 @@ app.use(function(req, res, next){
 
 app.use('/', index);
 app.use('/dashboard', dashboard);
-app.use('/profile', profile);
+app.use('/settings', settings);
 app.use('api',api);
 
 // catch 404 and forward to error handler

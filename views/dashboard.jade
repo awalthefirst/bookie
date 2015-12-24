@@ -1,14 +1,23 @@
 extends layout
 
 block content
-  nav.navbar.navbar-default
-    .container
-      .col-md-7
-        p Bookie 
-      .col-md-5
-         a(href="/logout") logout
-  .container
-
+  include ./fragments/auth-nav.jade
+  .container.text-center
+    div
+      .col-sm-6
+        .form-group
+          label(for='addBook') : Add a Book
+          input.form-control(type="text" id='addBook' required name="book" placeholder="lord of the ...")
+          button.btn.navbar-btn(type="submit") Add 
+      .col-sm-6
+        h1 Book request
+        p you have made 0 request 
+        p you have 0 request 
+        
+    div
+      .col-sm-12.your-books
+        h1 Your Book 
+      
     
   
  

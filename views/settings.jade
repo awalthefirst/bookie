@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  include ./fragments/auth-nav.jade
+  .col-xs-12.col-sm-8.col-sm-offset-2
+    form(action='#' method="post")
+      .form-group
+        label Update 
+        input(type="text" name='city' required class="form-control" placeholder="City")
+        input(type="tel" name='phone' required class="form-control" placeholder="Mobile Number")
+        input(type="text" name='reqion' required class="form-control" placeholder="Country/State")
+      button.btn.btn-primary(type="submit") Update

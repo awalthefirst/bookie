@@ -1,28 +1,17 @@
 extends layout
 
 block content
-  nav.navbar.navbar-default
-    .container
-      .col-md-7
-        p Bookie 
-      .col-md-5
-        form.form-inline(action='/login' method="post")
-          input(type="email" required name="email" class="form-control"  placeholder="Enter email")
-          input(type="password" required name="password" class="form-control"  placeholder="Password")
-          button.btn(type="submit") Log In
+  if auth
+    include ./fragments/auth-nav.jade
+  else
+    include ./fragments/un-auth-nav.jade
   .container
-    div
-      .col-md-7
+    if !auth
+      .col-sm-7
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, commodi cumque sint unde maxime accusamus adipisci nemo quaerat aspernatur facere assumenda alias earum repellat nam velit nostrum itaque officia laudantium!
-      .col-md-5
-        form(action='/signup' method="post")
-          input(type="text" name='username' required class="form-control"  placeholder="Enter Username")
-          input(type="email" name='email' required class="form-control"  placeholder="Enter email")
-          input(type="password" name='password' required class="form-control"  placeholder="Password")
-          input(type="text" name='city' required class="form-control" placeholder="City")
-          input(type="tel" name='phone' required class="form-control" placeholder="Mobile Number")
-          input(type="text" name='reqion' required class="form-control" placeholder="Country/State")
-          button.btn(type="submit") Sign Up
+      
+      include ./fragments/signup.jade
+  
     
   
  
