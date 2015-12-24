@@ -1,0 +1,14 @@
+nav.navbar.navbar-inverse
+  .container-fluid
+    .navbar-header
+      button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-collapse-1" aria-expanded="false")
+        span.sr-only toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href="/") Bookie
+    .collapse.navbar-collapse(id="bs-collapse-1")
+      ul.nav.navbar-nav.navbar-right
+        li: a(href="/dashboard" ) dashboard 
+        li: a( data-target="#bs-collapse-1") setting
+        li: a(href="/logout") sign out

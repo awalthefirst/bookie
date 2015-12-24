@@ -1,0 +1,13 @@
+.col-sm-5
+  form(action='/signup' method="post")
+    .form-group
+      label Sign up
+      input(type="text" name='username' required class="form-control"  placeholder="Enter Username")
+      input(type="email" name='email' required class="form-control"  placeholder="Enter email")
+      input(type="password" name='password' required class="form-control"  placeholder="Password")
+    .form-group
+      label Contact detail will only be shared with traders
+      input(type="text" name='city' required class="form-control" placeholder="City")
+      input(type="tel" name='phone' required class="form-control" placeholder="Mobile Number")
+      input(type="text" name='reqion' required class="form-control" placeholder="Country/State")
+    button.btn.btn-primary(type="submit") Sign Up
