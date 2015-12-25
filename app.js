@@ -35,6 +35,10 @@ app.use(sessions({
 app.use(function(req, res, next){
  if (req.BookieSession && req.BookieSession.user) {
     req.Authen = true;
+    req.user = {
+      username:req.BookieSession.user.username,
+      email: req.BookieSession.user.email
+    }
   }else{
     req.Authen = false;
   }
@@ -44,7 +48,7 @@ app.use(function(req, res, next){
 app.use('/', index);
 app.use('/dashboard', dashboard);
 app.use('/settings', settings);
-app.use('api',api);
+app.use('/api',api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
