@@ -1,5 +1,36 @@
 $(function () {
 
+
+  $('.glyphicon-ok').click(tradeAction);
+  $('.glyphicon-remove').click(tradeAction);
+
+  function tradeAction(e) {
+
+    if (e.target.id === 'gly-ok') {
+      var which = 'accepted';
+    }
+    else {
+      var which = 'denied';
+    }
+
+    var bookname = $(this).parent().text().trim();
+
+    $.ajax({
+      type: "PUT",
+      url: '/api/traderesponse',
+      data: {
+        bookname: bookname,
+        action: which
+      },
+      success: function () {
+
+      }
+    })
+
+
+  }
+
+
   $('.delbook').click(function () {
     var book = this.id;
     $.ajax({
@@ -16,7 +47,7 @@ $(function () {
 
   $('.reqbook').click(function () {
     var book = this.id;
-    var owner = $('#'+this.id).prev().children().first().html().trim();
+    var owner = $('#' + this.id).prev().children().first().html().trim();
     $.ajax({
       type: "PUT",
       url: '/api/bookrequest',

@@ -23,6 +23,12 @@ var UserRequestSchema = new Schema({
   status: String
 });
 
+var BookRequestMessSchema = new Schema({
+  bookname: String,
+  who: String,
+  status: Boolean,
+  action: String,
+});
 
 var userSchema = new Schema({
   username: {
@@ -41,7 +47,8 @@ var userSchema = new Schema({
   },
 
   UserInfo: [UserInfoSchema],
-  userBookRequest: [UserRequestSchema]
+  userBookRequest: [UserRequestSchema],
+  BookRequestMess: [BookRequestMessSchema]
 });
 
 var obj = {
@@ -108,7 +115,45 @@ var obj = {
     obj.getUser().findOne({
       username: query.username
     }, 'userBookRequest', cb)
+  },
+
+  addBookReqMess: function (query, cb) {
+
+    obj.getUser().findOne({
+      username: query.username
+    }, function (err, data) {
+      if (err) return cb(err);
+
+      data.BookRequestMess.push({
+        bookname: query.bookname,
+        who: query.who,
+        status: query.status,
+        action: query.action
+      });
+
+      data.save(cb);
+
+    });
+
+  },
+
+  getAllBookReqMess: function (query, cb) {
+    obj.getUser().findOne({
+      username: query.username
+    }, 'BookRequestMess', cb)
+  },
+
+  updateMessStatus: function (query, cb) {
+    obj.getUser().update({
+      'BookRequestMess.bookname': query.bookname
+    }, {
+      $set: {
+        'BookRequestMess.status': query.status,
+        'BookRequestMess.action': query.action,
+      }
+    }, cb);
   }
+
 
 };
 

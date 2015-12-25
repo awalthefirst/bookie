@@ -10,8 +10,6 @@ router.get('/', function (req, res, next) {
     return res.redirect('/');
   }
 
-
-
   bookDb.findAllBook({
     username: req.user.username,
   }, function (err, data) {
@@ -19,12 +17,19 @@ router.get('/', function (req, res, next) {
     userDb.getAllBookReq({
       username: req.user.username
     }, function (err, bookReq) {
-      
-      res.render('dashboard', {
-        title: 'dashboard',
-        auth: req.Authen,
-        data: data,
-        bookReq:bookReq.userBookRequest
+
+      userDb.getAllBookReqMess({
+        username: req.user.username
+      }, function (err, bookReqMess) {
+        console.log(bookReqMess)
+        res.render('dashboard', {
+          title: 'dashboard',
+          auth: req.Authen,
+          data: data,
+          bookReq: bookReq.userBookRequest,
+          bookReqMess:bookReqMess.BookRequestMess
+        });
+
       });
 
     });
@@ -33,6 +38,8 @@ router.get('/', function (req, res, next) {
 
 
 });
+
+
 
 // adding a new book
 router.post('/', function (req, res, next) {
@@ -66,7 +73,6 @@ router.post('/', function (req, res, next) {
           status: false
         }, function (err, data) {
           if (err) {
-            console.log(err)
             return respond('err');
           }
 

@@ -16,13 +16,23 @@ block content
           span.badge #{bookReq.length} 
           |  trade request
         each req in bookReq
-          button.btn.btn-default #{req.bookname} 
+          button.btn.btn-default.navbar-btn #{req.bookname} 
             span.badge #{req.status}
-            
-      
+          |    
+           
         button.btn.btn-info.btn-block You have  
-          span.badge 0 
+          span.badge #{bookReqMess.length}
           |  trade request
+        each mess in bookReqMess
+          button.btn.navbar-btn #{mess.bookname} 
+            if mess.status
+              span.badge #{mess.action}
+            else
+              span.badge.glyphicon.glyphicon-remove(id='gly-remove') 
+              |  
+              span.badge.glyphicon.glyphicon-ok(id="gly-ok") 
+          |     
+                 
     div
       .col-sm-12.your-books
         h1 Your Books 
