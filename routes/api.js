@@ -12,14 +12,15 @@ router.put('/traderesponse', function (req, res, next) {
       bookname: req.body.bookname,
       action: req.body.action,
       status: true
-    });
-    res.send();
-
-    usersDb.updateBookReq({
+    }, function (){
+      res.send();
+      usersDb.updateBookReq({
       username: req.body.username,
       bookname: req.body.bookname,
       owner: req.user.owner,
       status: req.body.action
+    });
+      
     });
 
   }
