@@ -65,7 +65,19 @@ var obj = {
     user.save(cb);
   },
 
-  updateUserInfo: function () {}
+  updateUserInfo: function (query, cb) {
+    obj.getUser().findOneAndUpdate({
+      email: query.email,
+      username: query.username
+    }, {
+      UserInfo:{
+        phone: query.phone,
+        reqion: query.reqion,
+        city: query.city
+      }
+    }, cb);
+  }
+
 };
 
 

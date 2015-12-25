@@ -7,6 +7,7 @@ var BooksSchema = new Schema({
   bookname: String,
   username: String,
   email: String,
+  bookisbn:String,
   status: Boolean
 
 });
@@ -23,9 +24,14 @@ var obj = {
     }, cb)
   },
   
+  findAllBook:function(query,cb){
+    obj.getBookDb().find(query, cb)
+  },
+  
   addBook: function (query, cb) {
     var book = new obj.getBookDb()({
       bookname: query.bookname,
+      bookisbn: query.bookisbn,
       username: query.username,
       email: query.email,
       status: query.status
