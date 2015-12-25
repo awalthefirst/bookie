@@ -1,20 +1,37 @@
 var express = require('express');
 var router = express.Router();
 var booksDb = require("../model/books");
-
+var usersDb = require("../model/users")
 
 
 router.put('/bookrequest', function (req, res, next) {
 
-  if (req.Authen && req.body.owner 
-     !== req.user.username) {
-     console.log(req.body);
-     
-     res.send();
+  if (req.Authen && req.body.owner !== req.user.username) {
+  
+     usersDb.addBookReq({
+      username:req.user.username,
+      bookname:req.body.book,
+      owner:req.body.owner,
+      status:'pending'
+    }, function (err, data) {
+      if(err){
+        return res.status(404).end();
+      }
+      
+      res.send();
+      booksDb.updateBookStatus({
+        bookname:req.body.book,
+        username:req.body.owner,
+        status:true
+      });
+      
+    })
+      
+
   }
 
-
 });
+
 
 router.delete('/removebook', function (req, res, next) {
 
@@ -32,7 +49,6 @@ router.delete('/removebook', function (req, res, next) {
     });
 
   }
-
 
 });
 

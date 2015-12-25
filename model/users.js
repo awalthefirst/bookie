@@ -20,10 +20,8 @@ var UserInfoSchema = new Schema({
 var UserRequestSchema = new Schema({
   bookname: String,
   owner: String,
-  status: Boolean
+  status: String
 });
-
-
 
 
 var userSchema = new Schema({
@@ -85,6 +83,31 @@ var obj = {
         city: query.city
       }
     }, cb);
+  },
+
+  addBookReq: function (query, cb) {
+
+    obj.getUser().findOne({
+      username: query.username
+    }, function (err, data) {
+      if (err) return cb(err);
+
+      data.userBookRequest.push({
+        bookname: query.bookname,
+        owner: query.owner,
+        status: query.status
+      });
+
+      data.save(cb);
+
+    });
+
+  },
+
+  getAllBookReq: function (query, cb) {
+    obj.getUser().findOne({
+      username: query.username
+    }, 'userBookRequest', cb)
   }
 
 };

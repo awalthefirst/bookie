@@ -13,8 +13,13 @@ block content
       .col-sm-6
         h1 Book request status
         button.btn.btn-info.btn-block You have made 
-          span.badge 0 
+          span.badge #{bookReq.length} 
           |  trade request
+        each req in bookReq
+          button.btn.btn-default #{req.bookname} 
+            span.badge #{req.status}
+            
+      
         button.btn.btn-info.btn-block You have  
           span.badge 0 
           |  trade request

@@ -2,27 +2,39 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 var bookDb = require("../model/books")
-  /* GET Dashboard Page. */
+var userDb = require('../model/users')
 
+/* GET Dashboard Page. */
 router.get('/', function (req, res, next) {
   if (!req.Authen) {
     return res.redirect('/');
   }
 
+
+
   bookDb.findAllBook({
-    username: req.user.username, 
+    username: req.user.username,
   }, function (err, data) {
+
+    userDb.getAllBookReq({
+      username: req.user.username
+    }, function (err, bookReq) {
+      
       res.render('dashboard', {
         title: 'dashboard',
         auth: req.Authen,
-        data: data
+        data: data,
+        bookReq:bookReq.userBookRequest
       });
-      
-      
-    })
+
+    });
+
+  });
+
+
 });
 
-
+// adding a new book
 router.post('/', function (req, res, next) {
   if (!req.Authen) {
     return res.redirect('/');
@@ -57,8 +69,8 @@ router.post('/', function (req, res, next) {
             console.log(err)
             return respond('err');
           }
-          
-         res.redirect('/dashboard');
+
+          res.redirect('/dashboard');
         });
 
       });
