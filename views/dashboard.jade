@@ -5,19 +5,33 @@ block content
   .container.text-center
     div
       .col-sm-6
-        .form-group
-          label(for='addBook') : Add a Book
-          input.form-control(type="text" id='addBook' required name="book" placeholder="lord of the ...")
-          button.btn.navbar-btn(type="submit") Add 
+        form(action="/dashboard" method="post" )
+          .form-group
+            h1 Add a new book
+            input.form-control(type="text" id='addBook' required name="book" placeholder="lord of the ...")
+            button.btn.navbar-btn(type="submit") Add 
       .col-sm-6
-        h1 Book request
-        p you have made 0 request 
-        p you have 0 request 
-        
+        h1 Book request status
+        button.btn.btn-info.btn-block You have made 
+          span.badge 0 
+          |  trade request
+        button.btn.btn-info.btn-block You have  
+          span.badge 0 
+          |  trade request
     div
       .col-sm-12.your-books
-        h1 Your Book 
-      
-    
+        h1 Your Books 
+        .row
+          each book in data 
+            - var escBoknam = book.bookname.replace(/ /g,'_')
+            .col-sm-6.col-md-4(class=escBoknam)
+              .thumbnail
+                - var isb=book.bookisbn
+                img(src='https://covers.openlibrary.org/b/isbn/'+isb+'-M.jpg' )
+                .caption
+                  h3=book.bookname
+                  p Added by: #{book.username}
+                  a.btn.btn-sm.btn-danger.delbook(id=escBoknam, role="button") Delete Book
+                 
   
  

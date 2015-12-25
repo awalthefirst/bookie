@@ -11,6 +11,25 @@ block content
         p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem, commodi cumque sint unde maxime accusamus adipisci nemo quaerat aspernatur facere assumenda alias earum repellat nam velit nostrum itaque officia laudantium!
       
       include ./fragments/signup.jade
+    else
+      .row.text-center
+        each book in data 
+          .col-sm-6.col-md-4
+            .thumbnail
+              - var isb=book.bookisbn
+              img(src='http://covers.openlibrary.org/b/isbn/'+isb+'-M.jpg' )
+              .caption
+                h3=book.bookname
+                if(book.username === authUsername)
+                  p Added by: You
+                else
+                  p Added by: #{book.username}
+                if(book.status || book.username === authUsername)
+                  a.btn.btn-sm.btn-primary.disabled(href="#", role="button") Request
+                else
+                  a.btn.btn-sm.btn-primary(href="#", role="button") Request
+  include ./fragments/footer.jade
+                
   
     
   
