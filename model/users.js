@@ -117,6 +117,18 @@ var obj = {
     }, 'userBookRequest', cb)
   },
 
+  updateBookReq: function (query, cb) {
+    obj.getUser().update({
+      username: query.username,
+      'userBookRequest.bookname': query.bookname,
+      'userBookRequest.owner': query.owner,
+    }, {
+      $set: {
+        'userBookRequest.$.status': query.status,
+      }
+    }, cb);
+  },
+
   addBookReqMess: function (query, cb) {
 
     obj.getUser().findOne({
@@ -148,8 +160,8 @@ var obj = {
       'BookRequestMess.bookname': query.bookname
     }, {
       $set: {
-        'BookRequestMess.status': query.status,
-        'BookRequestMess.action': query.action,
+        'BookRequestMess.$.status': query.status,
+        'BookRequestMess.$.action': query.action,
       }
     }, cb);
   }

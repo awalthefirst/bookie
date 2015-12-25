@@ -12,11 +12,15 @@ router.put('/traderesponse', function (req, res, next) {
       bookname: req.body.bookname,
       action: req.body.action,
       status: true
-    }, function (err, data) {
+    });
+    res.send();
 
-       res.send();
-    })
-
+    usersDb.updateBookReq({
+      username: req.body.username,
+      bookname: req.body.bookname,
+      owner: req.user.owner,
+      status: req.body.action
+    });
 
   }
 
@@ -26,6 +30,7 @@ router.put('/bookrequest', function (req, res, next) {
 
   if (req.Authen && req.body.owner !== req.user.username) {
 
+    //add to user req
     usersDb.addBookReq({
       username: req.user.username,
       bookname: req.body.book,

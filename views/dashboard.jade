@@ -28,6 +28,7 @@ block content
             if mess.status
               span.badge #{mess.action}
             else
+              span.who(id=mess.who)
               span.badge.glyphicon.glyphicon-remove(id='gly-remove') 
               |  
               span.badge.glyphicon.glyphicon-ok(id="gly-ok") 

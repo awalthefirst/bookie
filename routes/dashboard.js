@@ -21,7 +21,7 @@ router.get('/', function (req, res, next) {
       userDb.getAllBookReqMess({
         username: req.user.username
       }, function (err, bookReqMess) {
-        console.log(bookReqMess)
+        
         res.render('dashboard', {
           title: 'dashboard',
           auth: req.Authen,

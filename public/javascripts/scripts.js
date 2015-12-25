@@ -5,20 +5,21 @@ $(function () {
   $('.glyphicon-remove').click(tradeAction);
 
   function tradeAction(e) {
-
+     
+       
     if (e.target.id === 'gly-ok') {
       var which = 'accepted';
     }
     else {
       var which = 'denied';
     }
-
     var bookname = $(this).parent().text().trim();
 
     $.ajax({
       type: "PUT",
       url: '/api/traderesponse',
       data: {
+        username:$("#gly-ok").siblings('.who').attr('id').trim(),
         bookname: bookname,
         action: which
       },
