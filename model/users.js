@@ -17,6 +17,14 @@ var UserInfoSchema = new Schema({
   }
 });
 
+var UserRequestSchema = new Schema({
+  bookname: String,
+  owner: String,
+  status: Boolean
+});
+
+
+
 
 var userSchema = new Schema({
   username: {
@@ -34,7 +42,8 @@ var userSchema = new Schema({
     required: true
   },
 
-  UserInfo: [UserInfoSchema]
+  UserInfo: [UserInfoSchema],
+  userBookRequest: [UserRequestSchema]
 });
 
 var obj = {
@@ -70,7 +79,7 @@ var obj = {
       email: query.email,
       username: query.username
     }, {
-      UserInfo:{
+      UserInfo: {
         phone: query.phone,
         reqion: query.reqion,
         city: query.city

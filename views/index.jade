@@ -17,17 +17,19 @@ block content
           .col-sm-6.col-md-4
             .thumbnail
               - var isb=book.bookisbn
-              img(src='http://covers.openlibrary.org/b/isbn/'+isb+'-M.jpg' )
+              img(src='https://covers.openlibrary.org/b/isbn/'+isb+'-M.jpg' )
               .caption
                 h3=book.bookname
                 if(book.username === authUsername)
-                  p Added by: You
+                  p Added by : You
                 else
-                  p Added by: #{book.username}
+                  p Added by :
+                    span  #{book.username}
                 if(book.status || book.username === authUsername)
-                  a.btn.btn-sm.btn-primary.disabled(href="#", role="button") Request
+                  a.btn.btn-sm.btn-primary.disabled(role="button") Request
                 else
-                  a.btn.btn-sm.btn-primary(href="#", role="button") Request
+                  - var escbokname = book.bookname.replace(/ /g,'_');
+                  a.btn.btn-sm.btn-primary.reqbook(id=escbokname role="button") Request
   include ./fragments/footer.jade
                 
   
