@@ -37,13 +37,13 @@ app.use(sessions({
 
 // check for authentication 
 app.use(function (req, res, next) {
-  
+
   if (req.BookieSession && req.BookieSession.user) {
 
     userDb.findUser({
       email: req.BookieSession.user.email
     }, function (err, data) {
-      
+
       if (!err && data !== null) {
         req.Authen = true;
         req.user = {
@@ -52,9 +52,15 @@ app.use(function (req, res, next) {
         }
         next()
       }
+      else {
+        req.BookieSession.reset();
+        req.Authen = false;
+        next();
+      }
     })
   }
   else {
+    req.BookieSession.reset();
     req.Authen = false;
     next();
   }
