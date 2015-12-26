@@ -12,15 +12,22 @@ router.put('/traderesponse', function (req, res, next) {
       bookname: req.body.bookname,
       action: req.body.action,
       status: true
-    }, function (){
+    }, function (err, data) {
       res.send();
-      usersDb.updateBookReq({
-      username: req.body.username,
-      bookname: req.body.bookname,
-      owner: req.user.owner,
-      status: req.body.action
-    });
-      
+
+      if (!err) {
+
+        usersDb.updateBookReq({
+          username: req.body.owner, //person requesting the book
+          bookname: req.body.bookname,
+          owner: req.user.username, // person who added the book
+          status: req.body.action
+        }, function () {
+
+        });
+
+      }
+
     });
 
   }
@@ -49,17 +56,18 @@ router.put('/bookrequest', function (req, res, next) {
         bookname: req.body.book,
         username: req.body.owner,
         status: true
+      }, function (err) {
+        if (!err) {
+          // send book owner alert 
+          usersDb.addBookReqMess({
+            username: req.body.owner,
+            bookname: req.body.book,
+            who: req.user.username,
+            status: false,
+            action: null
+          });
+        }
       });
-
-      // send book owner alert 
-      usersDb.addBookReqMess({
-        username: req.body.owner,
-        bookname: req.body.book,
-        who: req.user.username,
-        status: false,
-        action: null
-      });
-
 
     });
 

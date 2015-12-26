@@ -118,15 +118,20 @@ var obj = {
   },
 
   updateBookReq: function (query, cb) {
+
     obj.getUser().update({
-      username: query.username,
-      'userBookRequest.bookname': query.bookname,
-      'userBookRequest.owner': query.owner,
+      'username': query.username,
+      "userBookRequest": {
+        $elemMatch: {
+          bookname: query.bookname,
+          owner: query.owner
+        }
+      }
     }, {
       $set: {
-        'userBookRequest.$.status': query.status,
+        "userBookRequest.$.status": query.status
       }
-    }, cb);
+    }, cb)
   },
 
   addBookReqMess: function (query, cb) {

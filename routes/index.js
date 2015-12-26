@@ -9,7 +9,6 @@ var bcrypt = require('bcryptjs');
 router.get('/', function (req, res, next) {
   if (req.Authen) {
     bookDb.findAllBook({}, function (err, data) {
-
       res.render('index', {
         title: 'Bookie',
         auth: req.Authen,

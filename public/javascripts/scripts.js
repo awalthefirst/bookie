@@ -19,12 +19,12 @@ $(function () {
       type: "PUT",
       url: '/api/traderesponse',
       data: {
-        username:$("#gly-ok").siblings('.who').attr('id').trim(),
+        owner:$("#gly-ok").siblings('.who').attr('id').trim(),
         bookname: bookname,
         action: which
       },
       success: function () {
-
+         window.location.reload();
       }
     })
 

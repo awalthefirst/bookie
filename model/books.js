@@ -48,6 +48,7 @@ var obj = {
   },
   
   updateBookStatus:function(query, cb){
+
     obj.getBookDb().findOneAndUpdate({
       bookname: query.bookname,
       username: query.username
@@ -55,7 +56,7 @@ var obj = {
       $set: {
         status: query.status,
       }
-    }, cb);
+    },cb);
   }
 
 };
