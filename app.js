@@ -37,6 +37,7 @@ app.use(sessions({
 
 // check for authentication 
 app.use(function (req, res, next) {
+  
   if (req.BookieSession && req.BookieSession.user) {
 
     userDb.findUser({

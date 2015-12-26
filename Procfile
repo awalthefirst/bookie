@@ -1,2 +1,2 @@
-web node ./bin/www 
+web ./node_modules/.bin/forever ./bin/www 
 
