@@ -22,7 +22,8 @@ router.post('/', function (req, res, next) {
 
     if (err) {
       res.render('settings', {
-        title: 'error'
+        title: 'error',
+        settError:true
       });
     }else{
       res.redirect('/dashboard');

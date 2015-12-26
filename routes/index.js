@@ -53,7 +53,7 @@ router.post('/login', function (req, res, next) {
       res.render('index', {
         title: 'Login Error',
         auth: req.Authen,
-        error: ''
+        loginerror: true
       });
     }
     else {
@@ -88,14 +88,19 @@ router.post('/signup', function (req, res, next) {
       city: req.body.city.toLowerCase()
     }
   }, function (err, data) {
-
+  
     //render home page with error
     if (err) {
+      if(err.code === 11000){
+        var errMess = 'Username/email already exits'
+      }else{
+        var errMess = 'Oops something went wrong'
+      }
       req.BookieSession.reset();
       res.render('index', {
         title: 'SignUp Error',
         auth: req.Authen,
-        error: ''
+        error: errMess
       });
     }
     else {

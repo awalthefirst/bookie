@@ -1,6 +1,9 @@
 $(function () {
-
-
+ 
+  $(".backup_picture").error(function(){
+      $(this).attr('src','http://dummyimage.com/600x400/44596b/fff.jpg');
+    });
+    
   $('.glyphicon-ok').click(tradeAction);
   $('.glyphicon-remove').click(tradeAction);
 

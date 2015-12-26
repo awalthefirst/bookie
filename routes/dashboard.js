@@ -63,7 +63,7 @@ router.post('/', function (req, res, next) {
       }, function (err, data) {
 
         if (err || data !== null) {
-          return respond('err');
+          return respond('The book exits in your catalog');
         };
 
         bookDb.addBook({
@@ -74,7 +74,7 @@ router.post('/', function (req, res, next) {
           status: false
         }, function (err, data) {
           if (err) {
-            return respond('err');
+            return respond('Something went wrong');
           }
 
           res.redirect('/dashboard');
@@ -85,15 +85,40 @@ router.post('/', function (req, res, next) {
 
     }
     else {
-      respond('err');
+      respond('Book not found');
     }
 
 
-    function respond(title) {
-      res.render('dashboard', {
-        title: title,
-        data: []
+    function respond(code) {
+      
+       bookDb.findAllBook({
+    username: req.user.username,
+  }, function (err, data) {
+
+    userDb.getAllBookReq({
+      username: req.user.username
+    }, function (err, bookReq) {
+      
+    
+      userDb.getAllBookReqMess({
+        username: req.user.username
+      }, function (err, bookReqMess) {
+        
+        res.render('dashboard', {
+          title: 'Error',
+          auth: req.Authen,
+          data: data,
+          bookReq: bookReq.userBookRequest,
+          bookReqMess:bookReqMess.BookRequestMess,
+          dashError:code,
+        });
+
       });
+
+    });
+
+  });
+      
     }
 
   });

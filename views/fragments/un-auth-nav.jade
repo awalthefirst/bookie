@@ -1,4 +1,4 @@
-nav.navbar.navbar-inverse
+nav.navbar.navbar-inverse(style="border-radius: 0 !important;")
   .container-fluid
     .navbar-header
       button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-collapse-1" aria-expanded="false")
@@ -6,11 +6,11 @@ nav.navbar.navbar-inverse
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href="/") Bookie
+      a.navbar-brand(href="/") Bookie - it
     .collapse.navbar-collapse(id="bs-collapse-1")
       form.navbar-form.navbar-right(action='/login' method="post")
-        .form-group
+        .form-group(class=loginerror ? 'has-error' : '')
           input.form-control.input-sm(type="email" required name="email" placeholder="Enter email")
-        .form-group
+        .form-group(class=loginerror ? 'has-error' : '')
           input.form-control.input-sm(type="password" required name="password" placeholder="Password")
         button.btn.btn-sm.btn-primary(type="submit") Log In

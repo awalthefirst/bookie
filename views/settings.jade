@@ -3,6 +3,9 @@ extends layout
 block content
   include ./fragments/auth-nav.jade
   .col-xs-12.col-sm-8.col-sm-offset-2
+    if(settError)
+      .alert.alert-danger
+        small Ooops something went wrong
     form(action='/settings' method="post")
       .form-group
         label Update 

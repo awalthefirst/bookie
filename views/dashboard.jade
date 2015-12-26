@@ -10,6 +10,9 @@ block content
             h1 Add a new book
             input.form-control(type="text" id='addBook' required name="book" placeholder="lord of the ...")
             button.btn.navbar-btn(type="submit") Add 
+            if(dashError !== undefined)
+              .alert.alert-danger
+                small #{dashError}
       .col-sm-6
         h1 Book request status
         button.btn.btn-info.btn-block You have made 
@@ -43,7 +46,7 @@ block content
             .col-sm-6.col-md-4(class=escBoknam)
               .thumbnail
                 - var isb=book.bookisbn
-                img(src='https://covers.openlibrary.org/b/isbn/'+isb+'-M.jpg' )
+                img.backup_picture(src='https://covers.openlibrary.org/b/isbn/'+isb+'-L.jpg' width="90%" height="350px")
                 .caption
                   h3=book.bookname
                   a.btn.btn-sm.btn-danger.delbook(id=escBoknam, role="button") Delete Book
