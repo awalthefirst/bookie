@@ -21,7 +21,7 @@ block content
           .col-sm-6.col-md-4
             .thumbnail
               - var isb=book.bookisbn
-              img.backup_picture(src='https://covers.openlibrary.org/b/isbn/'+isb+'-L.jpg' width="90%" height="350px")
+              img(src='https://covers.openlibrary.org/b/isbn/'+isb+'-L.jpg')
               .caption
                 h3=book.bookname
                 if(book.username === authUsername)

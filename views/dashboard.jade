@@ -46,7 +46,7 @@ block content
             .col-sm-6.col-md-4(class=escBoknam)
               .thumbnail
                 - var isb=book.bookisbn
-                img.backup_picture(src='https://covers.openlibrary.org/b/isbn/'+isb+'-L.jpg' width="90%" height="350px")
+                img(src='https://covers.openlibrary.org/b/isbn/'+isb+'-L.jpg' )
                 .caption
                   h3=book.bookname
                   a.btn.btn-sm.btn-danger.delbook(id=escBoknam, role="button") Delete Book
